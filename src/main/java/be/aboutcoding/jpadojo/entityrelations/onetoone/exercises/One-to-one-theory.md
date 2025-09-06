@@ -172,9 +172,9 @@ public class Car {
 }
 ```
 
-## Common Mistakes and Anti-Patterns
+## Common Mistakes and Possible Anti-Patterns
 
-### ❌ Wrong: No Clear Owner
+### ❌ Wrong: No Clear Owner In Our Problem Context
 ```java
 // Both entities trying to own the relationship
 @Entity
