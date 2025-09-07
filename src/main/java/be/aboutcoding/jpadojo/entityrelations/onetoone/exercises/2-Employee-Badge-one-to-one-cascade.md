@@ -1,5 +1,8 @@
 # Exercise 2: Bidirectional One-to-One Relationship with Security Badges
 
+You will find the classes to adjust in the `be.aboutcoding.jpadojo.entityrelations.onetoone.domain` package.
+
+
 ## Verify your solution with an AI agent:
 
 `verify my employee-badge one-to-one relationship exercise`

@@ -1,5 +1,7 @@
 # Exercise: One-to-One Relationship with Cascade Operations
 
+You will find the classes to adjust in the `be.aboutcoding.jpadojo.entityrelations.onetoone.domain` package.
+
 ## Verify your solution with an AI agent: 
 
 `verify my person-car-one-to-one relationship exercise`
