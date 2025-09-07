@@ -1,5 +1,9 @@
 # Exercise: One-to-One Relationship with Cascade Operations
 
+## Verify your solution with an AI agent: 
+
+`verify my person-car-one-to-one relationship exercise`
+
 ## Context
 You're building a system to track employees and their company cars. In this business context:
 - Each person can have **at most one company car**

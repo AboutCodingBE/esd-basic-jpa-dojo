@@ -3,7 +3,7 @@
 ## Overview
 This document contains the AI verification prompt for evaluating student solutions to JPA relationship exercises. The assessment focuses on both technical correctness and understanding of business-driven design decisions.
 
-## Exercise: One-to-One Relationship Verification
+## Exercise: Person-Car-One-to-One Relationship Verification
 
 ### Context
 Students have completed an exercise implementing a One-to-One relationship between Person and Car entities in a company car tracking system.
