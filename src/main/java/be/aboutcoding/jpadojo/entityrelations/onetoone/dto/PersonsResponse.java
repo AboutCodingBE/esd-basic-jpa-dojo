@@ -1,8 +1,8 @@
 package be.aboutcoding.jpadojo.entityrelations.onetoone.dto;
 
 
-import be.aboutcoding.jpadojo.entityrelations.onetoone.domain.Car;
-import be.aboutcoding.jpadojo.entityrelations.onetoone.domain.Person;
+import be.aboutcoding.jpadojo.entityrelations.onetoone.domain.personcar.Car;
+import be.aboutcoding.jpadojo.entityrelations.onetoone.domain.personcar.Person;
 
 public record PersonsResponse(
         Long id,

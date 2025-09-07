@@ -1,7 +1,7 @@
 package be.aboutcoding.jpadojo.entityrelations.onetoone.dto;
 
 
-import be.aboutcoding.jpadojo.entityrelations.onetoone.domain.Car;
+import be.aboutcoding.jpadojo.entityrelations.onetoone.domain.personcar.Car;
 
 public record CreatePersonRequest(
         Long id, // Optional: for updates, null for new persons

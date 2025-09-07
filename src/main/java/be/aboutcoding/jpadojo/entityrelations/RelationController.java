@@ -1,7 +1,7 @@
 package be.aboutcoding.jpadojo.entityrelations;
 
 
-import be.aboutcoding.jpadojo.entityrelations.onetoone.domain.Person;
+import be.aboutcoding.jpadojo.entityrelations.onetoone.domain.personcar.Person;
 import be.aboutcoding.jpadojo.entityrelations.onetoone.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

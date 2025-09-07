@@ -1,4 +1,4 @@
-package be.aboutcoding.jpadojo.entityrelations.onetoone.domain;
+package be.aboutcoding.jpadojo.entityrelations.onetoone.domain.personcar;
 
 
 public class Car {
