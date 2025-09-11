@@ -172,6 +172,124 @@ public class Car {
 }
 ```
 
+## The Core Difference
+
+**Unidirectional Ownership** = **Navigation Direction**  
+**Bidirectional Ownership** = **Business Modeling**
+
+## Unidirectional Relationships: Ownership Determines What You CAN Do
+
+In unidirectional relationships, the owner is the **only entity that can navigate** to the other entity. This creates a **functional constraint** on your application.
+
+### Example: Person → Car (Unidirectional)
+```java
+@Entity
+public class Person {
+    @OneToOne
+    @JoinColumn(name = "car_id")
+    private Car currentCar;  // ✅ Person owns = can navigate to Car
+}
+
+@Entity 
+public class Car {
+    // No reference to Person
+    // ❌ Cannot navigate back to Person
+}
+```
+
+**What you CAN ask:**
+- "What car does John have?" → `person.getCurrentCar()`
+
+**What you CANNOT ask:**
+- "Who owns this BMW?" → Not possible without additional queries
+
+### The Decision is Critical
+```java
+// Option A: Person owns Car
+person.getCurrentCar().getMake();     // ✅ Works
+car.getOwner();                       // ❌ Doesn't exist
+
+// Option B: Car owns Person  
+car.getOwner().getFirstName();        // ✅ Works
+person.getCurrentCar();               // ❌ Doesn't exist
+```
+
+**Ownership = Functional Capability**
+
+## Bidirectional Relationships: Ownership is About Modeling
+
+In bidirectional relationships, both entities can navigate to each other regardless of ownership. The ownership decision becomes about **representing the business domain accurately**.
+
+### Example: Employee ↔ Badge (Bidirectional)
+```java
+@Entity
+public class Badge {
+    @OneToOne
+    @JoinColumn(name = "employee_id")  // Badge owns (has FK)
+    private Employee assignedEmployee;
+}
+
+@Entity
+public class Employee {
+    @OneToOne(mappedBy = "assignedEmployee")  // Non-owning side
+    private Badge currentBadge;
+}
+```
+
+**What you CAN ask (regardless of ownership):**
+- "What badge does Alice have?" → `employee.getCurrentBadge()`
+- "Who has badge SEC-001?" → `badge.getAssignedEmployee()`
+
+**Both questions work regardless of who owns the relationship!**
+
+### Ownership Represents Business Reality
+
+**Badge owns Employee:**
+- Models: "Badge SEC-001 is assigned to Alice Johnson"
+- Business perspective: Security office assigns badges TO employees
+- Natural language: Badge has an employee, not employee has a badge
+
+**Employee owns Badge:**
+- Models: "Alice Johnson has badge SEC-001"
+- Business perspective: Employees are given badges
+- Natural language: Employee has a badge
+
+**Ownership = Conceptual Modeling**
+
+## Decision Framework
+
+### For Unidirectional Relationships
+Ask: **"What is my primary navigation pattern?"**
+
+- If you mainly ask "What X does Y have?" → Y should own X
+- If you mainly ask "Who has this X?" → X should own Y
+- **Choose based on your application's main use cases**
+
+### For Bidirectional Relationships
+Ask: **"How do we talk about this relationship in the real world?"**
+
+- How do business users describe the relationship?
+- Which entity is more "permanent" or "stable"?
+- What matches the natural business process?
+- **Choose based on domain modeling**
+
+## Key Takeaways
+
+| Relationship Type | Ownership Meaning | Decision Driver |
+|-------------------|-------------------|-----------------|
+| **Unidirectional** | Navigation capability | Primary use cases |
+| **Bidirectional** | Business model representation | Domain understanding |
+
+### Unidirectional: Technical Constraint
+- **Ownership = What your application can do**
+- Forces you to choose your primary navigation pattern
+- More restrictive but clearer decision criteria
+
+### Bidirectional: Modeling Choice
+- **Ownership = How you model the business domain**
+- Both navigation directions available regardless of ownership
+- More flexible but requires deeper business analysis
+
 ## Common Mistakes and Possible Anti-Patterns
 
 ### ❌ Wrong: No Clear Owner In Our Problem Context
