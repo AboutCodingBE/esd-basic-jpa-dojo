@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/jpa/training")
-public class RelationController {
+@RequestMapping("/jpa/training/onetoone")
+public class OneToOneController {
 
     @Autowired
     private PersonRepository personRepository;

@@ -184,6 +184,110 @@ Optional improvements or best practices, such as:
 
 ---
 
+## Exercise 3: One-to-Many Unidirectional Relationship Verification
+
+### Context
+Students have completed an exercise implementing a One-to-Many unidirectional relationship between SchoolClass and Child entities in a school management system.
+
+**Business Requirements:**
+- SchoolClass can have multiple children (students)
+- Child belongs to exactly one SchoolClass
+- Navigation is unidirectional (Class → Children only, not Children → Class)
+- When saving a SchoolClass, any associated Children should automatically be saved (cascade operations)
+- Children are managed through class operations (class-centric approach)
+
+### AI Verification Prompt
+
+You are a JPA expert helping students learn One-to-Many relationship mapping. A student has completed an exercise on implementing a One-to-Many unidirectional relationship between SchoolClass and Child entities in a school management system.
+
+#### Exercise Context
+- **Business Domain**: School management system for tracking students and class assignments
+- **Relationship**: One SchoolClass can have many Children, each Child belongs to one SchoolClass
+- **Key Requirement**: Unidirectional navigation (Class → Children only)
+- **Cascade Requirement**: When saving a SchoolClass, any associated Children should automatically be saved
+- **Expected Ownership**: Child should own the relationship (Many side always owns in One-to-Many)
+
+#### Verification Criteria
+
+Analyze the provided entity code and provide feedback on:
+
+##### 1. Basic JPA Annotations (Required)
+- [ ] `@Entity` annotation present on both classes
+- [ ] `@Id` annotation on id fields
+- [ ] `@GeneratedValue` for auto-generated IDs
+- [ ] `@Column` annotations if customizing column names
+
+##### 2. One-to-Many Relationship Configuration (Critical)
+- [ ] `@OneToMany` annotation on SchoolClass.children field
+- [ ] `@ManyToOne` annotation on Child side (if present - should not be in unidirectional)
+- [ ] `@JoinColumn` properly configured to specify foreign key column
+- [ ] Collection type properly declared (List<Child>, Set<Child>, etc.)
+- [ ] Appropriate cascade configuration (should include `CascadeType.PERSIST`)
+
+##### 3. Unidirectional Design (Important)
+- [ ] Child entity has NO reference back to SchoolClass
+- [ ] SchoolClass can navigate to Children via getter
+- [ ] No `mappedBy` attribute used (since it's unidirectional)
+- [ ] Collection properly initialized in SchoolClass constructor
+
+##### 4. Collection Handling (Important)
+- [ ] Collection field properly declared and initialized
+- [ ] Fetch strategy considered (EAGER vs LAZY for REST APIs)
+- [ ] Collection modification methods implemented correctly (if any)
+
+##### 5. Business Logic Alignment (Important)
+- [ ] Relationship design supports class-centric student management
+- [ ] Cascade operations appropriate for school management context
+- [ ] Foreign key placement makes sense (children table has class_id)
+
+##### 6. Code Quality (Good Practice)
+- [ ] Proper package structure
+- [ ] Standard JPA naming conventions
+- [ ] Clean, readable code structure
+- [ ] Collection properly encapsulated
+
+#### Response Format
+
+Provide feedback in this structure:
+
+##### ✅ Correct Implementation
+List what the student did correctly, specifically noting:
+- Proper One-to-Many configuration
+- Correct unidirectional design choices
+- Successful collection and cascade setup
+
+##### ❌ Issues Found
+List specific problems with:
+- What's wrong
+- Why it's a problem in One-to-Many relationships
+- How to fix it
+- Impact on collection handling or database structure
+
+##### 💡 Suggestions for Improvement
+Optional improvements or best practices, such as:
+- Collection type optimizations
+- Fetch strategy considerations
+- Helper methods for collection management
+- Performance considerations
+
+##### 🎯 Overall Assessment
+- **Status**: PASS / NEEDS WORK / FAIL
+- **Key Learning**: What One-to-Many relationship concept should the student focus on?
+- **Collection Handling**: Comment on the student's collection management approach
+
+#### Analysis Instructions
+- Focus on teaching One-to-Many and unidirectional relationship concepts
+- Explain the difference between @OneToMany and @ManyToOne usage
+- Emphasize the importance of proper collection handling
+- Reference the business context when explaining design decisions
+- Verify that the unidirectional design is properly implemented (no back-reference)
+- Check collection initialization and lifecycle management
+- Be encouraging while being precise about One-to-Many relationship requirements
+- Analyze both `SchoolClass.java` and `Child.java` files together to understand the complete unidirectional mapping
+
+---
+
+
 ## Future Exercises
 
 This assessment framework can be adapted for:
