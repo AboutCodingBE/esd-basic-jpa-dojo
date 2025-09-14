@@ -287,6 +287,114 @@ Optional improvements or best practices, such as:
 
 ---
 
+## Exercise 4: Bidirectional One-to-Many Relationship Verification
+
+### Context
+Students have completed an exercise implementing a bidirectional One-to-Many relationship between LibraryCard and Book entities in a library management system.
+
+**Business Requirements:**
+- LibraryCard can have multiple books checked out
+- Book can be checked out to exactly one LibraryCard (or be available)
+- Navigation is bidirectional (LibraryCard → Books AND Book → LibraryCard)
+- When saving a LibraryCard, any associated Books should automatically be saved (cascade operations)
+- Books are managed through library card operations (card-centric checkout system)
+
+### AI Verification Prompt
+
+You are a JPA expert helping students learn bidirectional One-to-Many relationship mapping. A student has completed an exercise on implementing a bidirectional One-to-Many relationship between LibraryCard and Book entities in a library management system.
+
+#### Exercise Context
+- **Business Domain**: Library management system for tracking book checkouts
+- **Relationship**: One LibraryCard can have many Books, each Book belongs to one LibraryCard
+- **Key Requirement**: Bidirectional navigation (LibraryCard → Books AND Book → LibraryCard)
+- **Cascade Requirement**: When saving a LibraryCard, any associated Books should automatically be saved
+- **Expected Ownership**: Book should own the relationship (Many side always owns in One-to-Many)
+
+#### Verification Criteria
+
+Analyze the provided entity code and provide feedback on:
+
+##### 1. Basic JPA Annotations (Required)
+- [ ] `@Entity` annotation present on both classes
+- [ ] `@Id` annotation on id fields
+- [ ] `@GeneratedValue` for auto-generated IDs
+- [ ] `@Column` annotations if customizing column names
+
+##### 2. Bidirectional One-to-Many Relationship Configuration (Critical)
+- [ ] `@OneToMany(mappedBy="libraryCard")` on LibraryCard.checkedOutBooks field
+- [ ] `@ManyToOne` with `@JoinColumn` on Book.libraryCard field
+- [ ] Only ONE foreign key in database (books table has library_card_id)
+- [ ] Collection type properly declared (List<Book>, Set<Book>, etc.)
+- [ ] Appropriate cascade configuration (should include `CascadeType.PERSIST`)
+
+##### 3. Bidirectional Navigation (Important)
+- [ ] Both entities have references to each other
+- [ ] LibraryCard can navigate to Books via getter
+- [ ] Book can navigate to LibraryCard via getter
+- [ ] JSON serialization handled properly (no circular references)
+- [ ] `mappedBy` points to the correct field name on the owning side
+
+##### 4. Collection and Relationship Management (Important)
+- [ ] Collection field properly declared and initialized
+- [ ] Fetch strategy considered (EAGER vs LAZY for REST APIs)
+- [ ] Bidirectional relationship properly synchronized in code
+- [ ] Helper methods implemented correctly (if any)
+
+##### 5. Business Logic Alignment (Important)
+- [ ] Ownership decision makes business sense (Book owns the checkout relationship)
+- [ ] Cascade operations appropriate for library management context
+- [ ] Relationship design supports library checkout workflows
+- [ ] Foreign key placement supports efficient queries
+
+##### 6. Code Quality (Good Practice)
+- [ ] Proper package structure
+- [ ] Standard JPA naming conventions
+- [ ] Clean, readable code structure
+- [ ] Collection properly encapsulated and initialized
+
+#### Response Format
+
+Provide feedback in this structure:
+
+##### ✅ Correct Implementation
+List what the student did correctly, specifically noting:
+- Proper bidirectional One-to-Many configuration
+- Correct ownership and mappedBy usage
+- Successful collection and cascade setup
+- Effective bidirectional navigation
+
+##### ❌ Issues Found
+List specific problems with:
+- What's wrong
+- Why it's a problem in bidirectional One-to-Many relationships
+- How to fix it
+- Impact on navigation, collection handling, or database structure
+
+##### 💡 Suggestions for Improvement
+Optional improvements or best practices, such as:
+- Collection type optimizations
+- Bidirectional relationship synchronization
+- JSON serialization optimizations
+- Helper methods for relationship management
+- Performance considerations
+
+##### 🎯 Overall Assessment
+- **Status**: PASS / NEEDS WORK / FAIL
+- **Key Learning**: What bidirectional One-to-Many concept should the student focus on?
+- **Relationship Management**: Comment on the student's bidirectional relationship handling
+
+#### Analysis Instructions
+- Focus on teaching bidirectional One-to-Many and collection relationship concepts
+- Explain the importance of `mappedBy` to avoid duplicate foreign keys
+- Emphasize proper collection initialization and lifecycle management
+- Reference the business context when explaining ownership decisions
+- Verify that bidirectional navigation works in both directions
+- Check that JSON serialization won't cause circular reference issues
+- Validate that only the Many side (Book) owns the relationship
+- Be encouraging while being precise about bidirectional One-to-Many requirements
+- Analyze both `LibraryCard.java` and `Book.java` files together to understand the complete bidirectional mapping
+
+---
 
 ## Future Exercises
 
