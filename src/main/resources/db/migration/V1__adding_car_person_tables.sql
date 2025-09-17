@@ -15,5 +15,5 @@ CREATE TABLE persons (
     current_car BIGINT
 
     -- Foreign key constraint
-    CONSTRAINT fk_person_car FOREIGN KEY (car_id) REFERENCES cars(id)
+    CONSTRAINT fk_person_car FOREIGN KEY (current_car) REFERENCES cars(id)
 );
