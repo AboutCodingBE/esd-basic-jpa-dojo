@@ -12,8 +12,7 @@ CREATE TABLE persons (
     first_name VARCHAR(100) NOT NULL,
     last_name VARCHAR(100) NOT NULL,
     department VARCHAR(100) NOT NULL,
-    current_car BIGINT
-
+    current_car BIGINT,
     -- Foreign key constraint
     CONSTRAINT fk_person_car FOREIGN KEY (current_car) REFERENCES cars(id)
 );
