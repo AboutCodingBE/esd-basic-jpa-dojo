@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.5.5</version>
+		<version>3.4.10</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>be.aboutcoding</groupId>
@@ -37,16 +37,12 @@
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
-        <!-- Flyway Core -->
-        <dependency>
-            <groupId>org.flywaydb</groupId>
-            <artifactId>flyway-core</artifactId>
-        </dependency>
 
         <!-- Flyway PostgreSQL -->
         <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-database-postgresql</artifactId>
+            <version>11.7.1</version>
         </dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
