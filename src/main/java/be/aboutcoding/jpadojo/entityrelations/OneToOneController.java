@@ -2,9 +2,9 @@ package be.aboutcoding.jpadojo.entityrelations;
 
 
 import be.aboutcoding.jpadojo.entityrelations.onetoone.domain.personcar.Person;
-import be.aboutcoding.jpadojo.entityrelations.onetoone.repository.BadgeRepository;
-import be.aboutcoding.jpadojo.entityrelations.onetoone.repository.EmployeeRepository;
 import be.aboutcoding.jpadojo.entityrelations.onetoone.repository.PersonRepository;
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,10 +13,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/jpa/training/onetoone")
+@RequiredArgsConstructor
 public class OneToOneController {
 
     @Autowired
-    private PersonRepository personRepository;
+    private final PersonRepository personRepository;
 
 
     @GetMapping("/person")
