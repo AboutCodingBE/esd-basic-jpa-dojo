@@ -3,13 +3,12 @@ package be.aboutcoding.jpadojo.entityrelations;
 
 import be.aboutcoding.jpadojo.entityrelations.onetoone.domain.employeebadge.Badge;
 import be.aboutcoding.jpadojo.entityrelations.onetoone.domain.employeebadge.Employee;
-import be.aboutcoding.jpadojo.entityrelations.onetoone.domain.personcar.Person;
 import be.aboutcoding.jpadojo.entityrelations.onetoone.dto.BadgeResponse;
 import be.aboutcoding.jpadojo.entityrelations.onetoone.dto.CreateEmployeeRequest;
 import be.aboutcoding.jpadojo.entityrelations.onetoone.dto.EmployeeResponse;
 import be.aboutcoding.jpadojo.entityrelations.onetoone.repository.BadgeRepository;
 import be.aboutcoding.jpadojo.entityrelations.onetoone.repository.EmployeeRepository;
-import be.aboutcoding.jpadojo.entityrelations.onetoone.repository.PersonRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,29 +17,14 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/jpa/training/onetoone")
+@RequiredArgsConstructor
 public class OneToOneController {
 
     @Autowired
-    private PersonRepository personRepository;
+    private final EmployeeRepository employeeRepository;
 
     @Autowired
-    private EmployeeRepository employeeRepository;
-
-    @Autowired
-    private BadgeRepository badgeRepository;
-
-
-    @GetMapping("/person")
-    public ResponseEntity<List<Person>> getAllPersons() {
-        List<Person> persons = personRepository.findAll();
-        return ResponseEntity.ok(persons);
-    }
-
-    @PutMapping("/person")
-    public ResponseEntity<Person> createOrUpdatePerson(@RequestBody Person person) {
-        Person savedPerson = personRepository.save(person);
-        return ResponseEntity.ok(savedPerson);
-    }
+    private final BadgeRepository badgeRepository;
 
     @GetMapping("/employee")
     public ResponseEntity<List<EmployeeResponse>> getAllEmployees() {

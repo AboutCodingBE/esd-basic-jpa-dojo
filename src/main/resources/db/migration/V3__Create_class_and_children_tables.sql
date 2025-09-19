@@ -13,8 +13,7 @@ CREATE TABLE children (
     last_name VARCHAR(100) NOT NULL,
     age INTEGER NOT NULL,
     student_number VARCHAR(20) NOT NULL UNIQUE,
-    class_id BIGINT
-
+    class_id BIGINT,
     -- Foreign key constraint (Many-to-One: many children belong to one class)
     CONSTRAINT fk_child_class FOREIGN KEY (class_id) REFERENCES classes(id)
 );

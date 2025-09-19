@@ -16,8 +16,7 @@ CREATE TABLE books (
     author VARCHAR(100) NOT NULL,
     isbn VARCHAR(20) NOT NULL UNIQUE,
     genre VARCHAR(50) NOT NULL,
-    library_card_id BIGINT
-
+    library_card_id BIGINT,
     -- Foreign key constraint (Many-to-One: many books can be checked out to one library card)
     CONSTRAINT fk_book_library_card FOREIGN KEY (library_card_id) REFERENCES library_cards(id)
 );
