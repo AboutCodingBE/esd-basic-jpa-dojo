@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/jpa/training/manytoone")
+@RequestMapping("/jpa/training/onetomany")
 public class OneToManyController {
 
     @Autowired
