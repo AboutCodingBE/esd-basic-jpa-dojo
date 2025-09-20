@@ -2,6 +2,7 @@ package be.aboutcoding.jpadojo.entityrelations.onetomany.dto.library;
 
 import be.aboutcoding.jpadojo.entityrelations.onetomany.domain.library.Book;
 import be.aboutcoding.jpadojo.entityrelations.onetomany.domain.library.LibraryCard;
+import jakarta.persistence.Column;
 
 import java.util.List;
 
@@ -10,8 +11,15 @@ public record LibraryCardResponse(
         String cardNumber,
         String holderName,
         String email,
-        List<Book> checkedOutBooks
+        List<BookResponse> checkedOutBooks
 ) {
+
+    public record BookResponse(
+            String title,
+            String author,
+            String isbn,
+            String genre
+    ){}
 
     // Factory method to create from LibraryCard entity
     public static LibraryCardResponse from(LibraryCard libraryCard) {
@@ -20,7 +28,18 @@ public record LibraryCardResponse(
                 libraryCard.getCardNumber(),
                 libraryCard.getHolderName(),
                 libraryCard.getEmail(),
-                libraryCard.getCheckedOutBooks()
+                libraryCard.getCheckedOutBooks().stream()
+                        .map(LibraryCardResponse::from)
+                        .toList()
+        );
+    }
+
+    private static BookResponse from(Book book) {
+        return new BookResponse(
+                book.getTitle(),
+                book.getAuthor(),
+                book.getIsbn(),
+                book.getGenre()
         );
     }
 }
