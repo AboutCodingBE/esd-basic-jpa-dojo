@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/jpa/training/onetoone")
+@RequestMapping("/jpa/training/manytoone")
 public class OneToManyController {
 
     @Autowired
