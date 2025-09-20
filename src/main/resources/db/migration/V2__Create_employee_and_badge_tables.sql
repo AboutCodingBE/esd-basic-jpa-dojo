@@ -11,8 +11,7 @@ CREATE TABLE employees (
     first_name VARCHAR(100) NOT NULL,
     last_name VARCHAR(100) NOT NULL,
     department VARCHAR(100) NOT NULL,
-    badge_id BIGINT
-
+    badge_id BIGINT,
     -- Foreign key constraint
     CONSTRAINT fk_employee_badge FOREIGN KEY (badge_id) REFERENCES badges(id)
 );
