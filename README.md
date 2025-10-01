@@ -1,20 +1,17 @@
 # The basic JPA dojo 
 
+
+
 ## Introduction
 I believe in relentless practice by repeating with intent and purpose. I think that is a great way to hone your skills. This
 dojo has some straightforward exercises which can be repeated over and over agian. The goal is of course not to memorise the
 exercises but to become fluent in certain basic aspects of JPA. 
 
-## Doing the exercises
+## About the exercises
 
-The exercises are grouped per topic in a folder / package. For example: the exercises on entity relations are in the 
-following package: `be.aboutcoding.jpadojo.entityrelations`. 
-
-You do one exercise Then you let a coding agent (for now this is Claude Code) verify your solution. Every exercise should 
-have a 'command' to have it assessed by a coding agent. 
-
-I would suggest you do the exercise, then start the docker database and use one of the REST endpoints to prove that your 
-code is working as expected without exceptions or any funky behaviour. 
+There is a total of 5 branches. The main branch holds the solution concerning the relationships. It might be that you need to
+code a little bit more to get the application running smoothly. The exercises are grouped per topic in a folder / package. 
+For example: the exercises on entity relations are in the following package: `be.aboutcoding.jpadojo.entityrelations`.
 
 ## How to Do the Exercises
 
@@ -26,9 +23,12 @@ code is working as expected without exceptions or any funky behaviour.
 
 Each exercise is available on its own branch. Follow this workflow:
 
-1. **Switch to the exercise branch**:
+1. **Switch to one of the following branches**:
    ```bash
-   git checkout exercise/[exercise-name]
+   git checkout ex/one-on-one-bidirectional
+   git checkout ex/one-on-one-unidirectional
+   git checkout ex/one-to-many-bidirectional
+   git checkout ex/one-to-many-unidirectional
    ```
 
 2. **Find the exercise description**: Each exercise has a markdown file in the `exercises` folder explaining:
