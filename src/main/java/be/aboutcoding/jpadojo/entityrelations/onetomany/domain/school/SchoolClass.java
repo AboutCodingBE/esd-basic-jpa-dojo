@@ -1,27 +1,37 @@
 package be.aboutcoding.jpadojo.entityrelations.onetomany.domain.school;
 
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
-@Getter
-@Setter //Should this stay or do we provide a different method to set properties?
+import static jakarta.persistence.GenerationType.IDENTITY;
+
+@Data
+@Entity
+@Table(name = "classes")
 public class SchoolClass {
 
+    @Id
+    @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
+    @Column(name = "class_name")
     private String className;
 
+    @Column(name = "teacher")
     private String teacher;
 
+    @Column(name = "room")
     private String room;
 
-    private List<Child> children;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Child> children = new ArrayList<>();
 
-
-
-    // TODO: Consider adding helper methods for managing the collection
-    // Examples: addChild(Child child), removeChild(Child child)
+    public void setChildren(List<Child> children) {
+        this.children.clear();
+        this.children.addAll(children);
+    }
 
 }
